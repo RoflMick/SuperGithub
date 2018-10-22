@@ -29,6 +29,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 import org.xmlpull.v1.XmlPullParserException;
@@ -72,6 +73,8 @@ public class NetworkActivity extends Activity {
     // The BroadcastReceiver that tracks network connectivity changes.
     private NetworkReceiver receiver = new NetworkReceiver();
 
+    ImageView imgFlag;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +83,9 @@ public class NetworkActivity extends Activity {
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         receiver = new NetworkReceiver();
         this.registerReceiver(receiver, filter);
+
+        imgFlag = findViewById(R.id.img);
+//        imgFlag.setImageResource(R.drawable.flag_);
     }
 
     // Refreshes the display if the network connection and the

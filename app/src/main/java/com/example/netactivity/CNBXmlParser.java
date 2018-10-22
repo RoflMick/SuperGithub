@@ -72,6 +72,7 @@ public class CNBXmlParser {
         String zeme = null;
         String kod = null;
         String kurz = null;
+        String mena = null;
         
         Log.d("readEntry","START");
 
@@ -91,6 +92,10 @@ public class CNBXmlParser {
                 if (parser.getAttributeName(i).equals("kurz")) {
                     kurz = parser.getAttributeValue(i);
                 }
+
+                if (parser.getAttributeName(i).equals("mena")) {
+                    mena = parser.getAttributeValue(i);
+                }
             	// TODO 2. - Zde je potreba dopsat naplneni dalsich udaju pro kazdou menu
                 // TODO 2. - Vzhledem k tomu, ze kazdy radek listu men je reprezetovan konkretni instaci tridy Entry, je zde take take potreba vlozit spravne parametry do konstruktoru teto tridy
                 // TODO 2. - V tomto okamziku se cte ze souboru .xml pouze KOD meny a proto se na konci bloku vola "return new Entry(kod)"
@@ -98,7 +103,7 @@ public class CNBXmlParser {
             
         parser.next();
             
-        return new Entry(zeme, kod, kurz);
+        return new Entry(zeme, kod, kurz, mena);
     }
   
 }

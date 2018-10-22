@@ -2,10 +2,12 @@ package com.example.netactivity;
 
 import java.util.List;
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -41,7 +43,8 @@ public class CNBAdapter extends ArrayAdapter<Entry>{
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = convertView;
         EntryHolder holder = null;
-       
+       int imageViewID;
+
         if(row == null) {
         	LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );      	
             row = inflater.inflate(layoutResourceId, parent, false);
@@ -50,6 +53,8 @@ public class CNBAdapter extends ArrayAdapter<Entry>{
             holder.txtZeme = row.findViewById(R.id.txtZeme);
             holder.txtKod = row.findViewById(R.id.txtKod);
             holder.txtKurz = row.findViewById(R.id.txtKurz);
+            holder.txtMena = row.findViewById(R.id.txtMena);
+            holder.imageView = row.findViewById(R.id.img);
             
             row.setTag(holder);
         } else {
@@ -59,7 +64,11 @@ public class CNBAdapter extends ArrayAdapter<Entry>{
         Entry entry = data.get(position);
         holder.txtZeme.setText(entry.zeme);
         holder.txtKod.setText(entry.kod);
-        holder.txtKurz.setText((entry.kurz));
+        holder.txtKurz.setText(entry.kurz);
+        holder.txtMena.setText(entry.mena.toUpperCase());
+
+        imageViewID = context.getResources().getIdentifier("@drawable/" + "flag_" + entry.kod.toLowerCase(), null, context.getPackageName());
+        holder.imageView.setImageResource(imageViewID);
         
         return row;
     }
@@ -68,5 +77,8 @@ public class CNBAdapter extends ArrayAdapter<Entry>{
         TextView txtZeme;
         TextView txtKod;
         TextView txtKurz;
+        TextView txtMena;
+        ImageView imageView;
     }
 }
+    
